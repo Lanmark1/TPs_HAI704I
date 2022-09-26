@@ -1,0 +1,35 @@
+package server;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import common.Animal;
+import common.SuiviAnimal;
+
+public class SuiviAnimalImpl extends UnicastRemoteObject implements SuiviAnimal{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String nomSuivi;
+
+	protected SuiviAnimalImpl() throws RemoteException {
+		super();
+	}
+	
+	public SuiviAnimalImpl(String sa)  throws RemoteException {
+		nomSuivi = sa;
+	}
+
+	@Override
+	public String getSuivi() {
+		return nomSuivi;
+	}
+
+	@Override
+	public void setSuivi(String nouveauSuivi) {
+		nomSuivi = nouveauSuivi;
+	}
+	
+}
