@@ -13,7 +13,7 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 	private static final long serialVersionUID = 1L;
 	public String nom;
 	public String nomMaitre;
-	public String espece;
+	public Espece espece = new Espece();
 	public String race ;
 	public SuiviAnimal suivi = new SuiviAnimalImpl("");
 
@@ -21,12 +21,12 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 	public AnimalImpl()  throws RemoteException {
 	}
 	
-	public AnimalImpl(String nomA, String nomMaitreA, String especeA, String raceA, SuiviAnimal sa)  throws RemoteException {
-			nom = nomA;
-			nomMaitre= nomMaitreA;
-			espece = especeA;
-			race = raceA;
-			suivi = sa;
+	public AnimalImpl(String nomA, String nomMaitreA, Espece especeA, String raceA, SuiviAnimal sa)  throws RemoteException {
+			this.nom = nomA;
+			this.nomMaitre= nomMaitreA;
+			this.espece = especeA;
+			this.race = raceA;
+			this.suivi = sa;
 	}
 		
 		
@@ -41,11 +41,15 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 			return suivi.getSuivi();
 		}
 		
-		
 
 		@Override
 		public void affichernomComplet() throws RemoteException {
 			
+		}
+
+		@Override
+		public String getNomEspece() throws RemoteException {
+			return espece.getNomEspece();
 		}
 
 }
