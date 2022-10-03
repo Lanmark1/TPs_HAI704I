@@ -2,3 +2,6 @@ grant {
 	// all permissions allowed
     permission java.security.AllPermission;
 };
+grant codeBase "file:../" {
+	permission java.security.AllPermission;
+};
