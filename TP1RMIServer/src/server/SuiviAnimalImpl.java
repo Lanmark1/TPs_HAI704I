@@ -3,8 +3,7 @@ package server;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import common.Animal;
-import common.SuiviAnimal;
+import commons.SuiviAnimal;
 
 public class SuiviAnimalImpl extends UnicastRemoteObject implements SuiviAnimal{
 	

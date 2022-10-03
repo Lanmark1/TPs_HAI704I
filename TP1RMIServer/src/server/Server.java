@@ -1,38 +1,36 @@
 package server;
 
 
-import java.rmi.AlreadyBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import common.Animal;
-import common.CabinetVeterinaire;
-import common.SuiviAnimal;
+import commons.CabinetVeterinaire;
+import commons.Espece;
+import commons.SuiviAnimal;
 
 public class Server {
-	public Server() {
-	}
+	
 
-	public static void main(String[] args) throws AlreadyBoundException {
+	public static void main(String[] args) {
 		
-		System.setProperty("java.security.policy", "src/server/security.policy");
 		
 		
 		try {
+			System.setProperty("java.security.policy", "file:./security.policy");
+			System.setProperty("java.rmi.server.codebase", "file:./codebase");
+			
 			Registry registry = LocateRegistry.createRegistry(1099);
 			SuiviAnimal suivi = new SuiviAnimalImpl("12345");
-			Espece especeAnimal = new Espece("Labrador");
-			Animal animal = new AnimalImpl("medor","dupont",especeAnimal,"Race1",suivi);
 			
+			Espece especeAnimal = new Espece("Labrador");
+				
 			CabinetVeterinaire cabinet = new CabinetVeterinaireImpl();
 			
 			if (registry == null)
 				System.err.println("Registry not found on port 1099");
 			else {
 				registry.rebind("Cabinet", cabinet);
-				registry.rebind("Animal", animal);
 				System.err.println("Server ready");
 			}
 		} catch (RemoteException e) {
