@@ -18,13 +18,11 @@ public class Server {
 		
 		try {
 			System.setProperty("java.security.policy", "file:./security.policy");
-			System.setProperty("java.rmi.server.codebase", "file:./codebase");
+			System.setProperty("java.rmi.server.codebase", "file:../../../TP1RMIClient/CodeBase/Chien.class");
 			
 			Registry registry = LocateRegistry.createRegistry(1099);
 			SuiviAnimal suivi = new SuiviAnimalImpl("12345");
 			
-			Espece especeAnimal = new Espece("Labrador");
-				
 			CabinetVeterinaire cabinet = new CabinetVeterinaireImpl();
 			
 			if (registry == null)

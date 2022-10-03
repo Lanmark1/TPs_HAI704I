@@ -1,23 +1,9 @@
 package commons;
 
-import java.io.Serializable;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-public class Espece implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String espece;
+public interface Espece extends Remote {
 	
-	public Espece() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Espece(String espece) {
-		this.espece = espece;
-	}
-	
-	public String getNomEspece() {
-		return espece;
-	}
+	public String getNomEspece() throws RemoteException;
 }

@@ -17,11 +17,12 @@ public class Client {
 			
 			CabinetVeterinaire cabinet = (CabinetVeterinaire) registry.lookup("Cabinet");
 					
-			cabinet.addAnimal("Fox", "Yoann", "Chien", "Labrador", "Bonne santé");
+			cabinet.addAnimal("Fox", "Yoann", "Chat", "Labrador", "Bonne santé");
 			
-			Espece espece = new Espece("Chat");
+			Espece espece = new Chien();
 			
 			cabinet.addAnimal("Matthieu", "Yoann", espece, "Labrador", "Bonne santé");
+			
 			Animal fox = cabinet.searchAnimal("Fox");
 			Animal matthieu = cabinet.searchAnimal("Matthieu");
 			System.out.println(fox.getEspece().getNomEspece());

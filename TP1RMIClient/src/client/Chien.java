@@ -5,36 +5,18 @@ import java.rmi.RemoteException;
 import commons.Animal;
 import commons.Espece;
 
-public class Chien implements Animal {
+public class Chien implements Espece {
 
-	@Override
-	public String getnom() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	private String espece = "Chien";
+	
+	public Chien() throws RemoteException {
+		this.espece = espece;
 	}
-
-	@Override
-	public String getSuiviAn() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public String getNomEspece() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return espece;
 	}
 
-	@Override
-	public Espece getEspece() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void affichernomComplet() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-	 
+	
 }
