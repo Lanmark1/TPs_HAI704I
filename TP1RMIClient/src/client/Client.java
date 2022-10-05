@@ -19,14 +19,14 @@ public class Client {
 					
 			cabinet.addAnimal("Fox", "Yoann", "Chat", "Labrador", "Bonne santé");
 			
-			Espece espece = new Chien();
+			//Espece espece = new Chien();
 			
-			cabinet.addAnimal("Matthieu", "Yoann", espece, "Labrador", "Bonne santé");
+			//cabinet.addAnimal("Matthieu", "Yoann", espece, "Labrador", "Bonne santé");
 			
 			Animal fox = cabinet.searchAnimal("Fox");
-			Animal matthieu = cabinet.searchAnimal("Matthieu");
+			//Animal matthieu = cabinet.searchAnimal("Matthieu");
 			System.out.println(fox.getEspece().getNomEspece());
-			System.out.println(matthieu.getEspece().getNomEspece());
+			//System.out.println(matthieu.getEspece().getNomEspece());
 			
 			
 			System.out.println(cabinet.size());

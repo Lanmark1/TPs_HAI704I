@@ -17,8 +17,11 @@ public class Server {
 		
 		
 		try {
+			
 			System.setProperty("java.security.policy", "file:./security.policy");
-			System.setProperty("java.rmi.server.codebase", "file:../../../TP1RMIClient/CodeBase/Chien.class");
+			//System.setProperty("java.rmi.server.codebase", "file:/TP1RMIClient/CodeBase/TP1RMIClient/CodeBase");
+			
+			System.setSecurityManager(new SecurityManager());
 			
 			Registry registry = LocateRegistry.createRegistry(1099);
 			SuiviAnimal suivi = new SuiviAnimalImpl("12345");
