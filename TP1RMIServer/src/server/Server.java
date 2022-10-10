@@ -19,8 +19,7 @@ public class Server {
 		try {
 			
 			System.setProperty("java.security.policy", "file:./security.policy");
-			//System.setProperty("java.rmi.server.codebase", "file:/TP1RMIClient/CodeBase/TP1RMIClient/CodeBase");
-			
+			System.setProperty("java.rmi.server.codebase", "file:/home/e20180003955/TPs_HAI704I/TP1RMIClient/codebase/");
 			System.setSecurityManager(new SecurityManager());
 			
 			Registry registry = LocateRegistry.createRegistry(1099);

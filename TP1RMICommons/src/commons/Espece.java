@@ -1,9 +1,24 @@
 package commons;
 
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-public interface Espece extends Remote {
+public class Espece extends UnicastRemoteObject implements Serializable {
 	
-	public String getNomEspece() throws RemoteException;
+	private String espece; 
+	
+	public Espece() throws RemoteException {
+		super();
+	}
+	
+	public Espece(String espece) throws RemoteException{
+		this.espece = espece;
+	}
+
+	public String getNomEspece() {
+		return espece;
+	}
 }
+

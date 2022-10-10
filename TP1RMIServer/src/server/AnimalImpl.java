@@ -14,7 +14,7 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 	private static final long serialVersionUID = 1L;
 	private String nom;
 	private String nomMaitre;
-	private Espece espece = new EspeceImpl("");
+	private Espece espece = new Espece("");
 	private String race ;
 	private SuiviAnimal suivi = new SuiviAnimalImpl("");
 	private String especeA;
@@ -29,7 +29,7 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 		
 		this.nomMaitre= nomMaitreA;
 		this.especeA = especeA;
-		this.espece = new EspeceImpl(especeA);
+		this.espece = new Espece(especeA);
 		this.race = raceA;
 		this.suiviA = sa;
 }
