@@ -7,6 +7,8 @@ import java.util.List;
 
 import tp1rmi.commons.Animal;
 import tp1rmi.commons.CabinetVeterinaire;
+import tp1rmi.commons.FollowUpFile;
+import tp1rmi.commons.Species;
 
 
 public class CabinetVeterinaireImpl extends UnicastRemoteObject implements CabinetVeterinaire {
@@ -19,7 +21,21 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	}
 	
 
-	public void addAnimal(String nom, String race, String espece, String nomMaitre, String fileContent) throws RemoteException  {
+	public void addAnimal(String nom, String race, String nomEspece, int esperanceVieEspece, String nomMaitre, String fileContent) throws RemoteException  {
+		AnimalImpl animal = new AnimalImpl(nom, race, nomEspece, esperanceVieEspece, nomMaitre, fileContent);
+		cabinet.add(animal);
+	}
+	
+	@Override
+	public void addAnimal(String nom, String race, Species espece, String nomMaitre, String fileContent)
+			throws RemoteException {
+		Species esp = espece;
+		AnimalImpl animal = new AnimalImpl(nom, race, esp, nomMaitre, fileContent);
+		cabinet.add(animal);
+		
+	}
+	
+	public void addAnimal(String nom, String race, Species espece, String nomMaitre, FollowUpFile fileContent) throws RemoteException  {
 		AnimalImpl animal = new AnimalImpl(nom, race, espece, nomMaitre, fileContent);
 		cabinet.add(animal);
 	}
@@ -32,5 +48,7 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 			if (i == cabinet.size()) return null;
 			else return cabinet.get(i);
 	}
+
+
 
 }

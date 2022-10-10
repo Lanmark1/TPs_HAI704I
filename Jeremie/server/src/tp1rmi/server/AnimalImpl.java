@@ -20,20 +20,28 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal {
 		file=new FollowUpFileImpl();
 	}
 	
-	public AnimalImpl(String nom, String race, String espece, String nomMaitre, String fileContent) throws RemoteException{
+	public AnimalImpl(String nom, String race, String nomEspece, int esperanceVieEspece, String nomMaitre, String fileContent) throws RemoteException{
 		this.nom=nom;
 		this.nomMaitre=nomMaitre;
-		this.espece=new Species(espece);
+		this.espece=new Species(nomEspece, esperanceVieEspece);
 		this.race=race;
-		file=new FollowUpFileImpl(fileContent);
+		this.file=new FollowUpFileImpl(fileContent);
 	}
 	
-	public AnimalImpl(String nom, String race, Species espece, String nomMaitre, FollowUpFileImpl fileContent) throws RemoteException{
+	public AnimalImpl(String nom, String race, Species espece, String nomMaitre, String fileContent) throws RemoteException{
 		this.nom=nom;
 		this.nomMaitre=nomMaitre;
 		this.espece=espece;
 		this.race=race;
-		file=fileContent;
+		this.file= new FollowUpFileImpl(fileContent);
+	}
+	
+	public AnimalImpl(String nom, String race, Species espece, String nomMaitre, FollowUpFile fileContent) throws RemoteException{
+		this.nom=nom;
+		this.nomMaitre=nomMaitre;
+		this.espece=espece;
+		this.race=race;
+		this.file= (FollowUpFileImpl) fileContent;
 	}
 	
 	// attributs
@@ -51,7 +59,7 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal {
 	}
 	
 	public String getFullName() throws RemoteException {
-		return "name: "+nom+", species: "+espece.getSpeciesName()+", race: "+race+", owned by: "+nomMaitre;
+		return "name: "+nom+", species name: "+espece.getSpeciesName()+", average lifespan: "+Integer.toString(espece.getSpeciesAverageLifeSpan())+", race: "+race+", owned by: "+nomMaitre;
 	}
 	
 	public void printFullName() throws RemoteException {

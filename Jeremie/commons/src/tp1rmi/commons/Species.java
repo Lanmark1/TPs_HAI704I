@@ -5,21 +5,30 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class Species extends UnicastRemoteObject implements Serializable {
+@SuppressWarnings("serial")
+public class Species extends UnicastRemoteObject{
 	
-	private String speciesName;
+	protected String speciesName;
+	protected int speciesAverageLifeSpan;
+
+	public Species(String especeNom, int esperanceVieEspece) throws RemoteException {
+		this.speciesName = especeNom;
+		this.speciesAverageLifeSpan = esperanceVieEspece;
+	}
+	
 
 	public Species() throws RemoteException {
-		super();
+		this.speciesName = "unknown";
+		this.speciesAverageLifeSpan = 0;
 	}
-	
-	public Species(String speciesName) throws RemoteException {
-		super();
-		this.speciesName = speciesName;
-	}
+
 
 	public String getSpeciesName() {
 		return speciesName;
+	}
+	
+	public int getSpeciesAverageLifeSpan() {
+		return speciesAverageLifeSpan;
 	}
 
 }

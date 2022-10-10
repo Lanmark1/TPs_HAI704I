@@ -2,6 +2,7 @@ package tp1rmi.server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Properties;
 
 public class Server {
 	
@@ -15,7 +16,9 @@ public class Server {
 //			SecurityManager sManager = new SecurityManager();
 //			System.setSecurityManager(sManager);
 			System.setProperty("java.security.policy","file:./security.policy");
-			System.setProperty("java.rmi.server.codebase", "file:./codebase");
+//			System.setProperty("java.rmi.server.codebase", "file:./codebase/");
+//			Properties p = System.getProperties();
+//			p.list
 			Registry registry = LocateRegistry.createRegistry(1099);
 //			 Registry registry = LocateRegistry.getRegistry();
 			if (registry == null) {

@@ -1,58 +1,39 @@
 package tp1rmi.client;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-import tp1rmi.commons.Animal;
 import tp1rmi.commons.Species;
 
-public class Dog implements Animal {
-
-	@Override
-	public String getName() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+public class Dog extends Species implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected boolean barks;
+	
+	public Dog() throws RemoteException{
+		this.speciesName = "chien";
+		this.speciesAverageLifeSpan = 15;
+	}
+	
+	public Dog(boolean barks) throws RemoteException{
+		this.speciesName = "chien";
+		this.speciesAverageLifeSpan = 15;
+		this.barks = barks;
+	}
+	
+	public void bark() {
+		System.out.println("woof");
+	}
+	
+	public boolean doesBarks() {
+		return barks;
 	}
 
-	@Override
-	public String getFullName() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object getFile() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void printFullName() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void printFile() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Species getSpecies() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getSpeciesName() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void printSpeciesName() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+	public void setBarks(boolean barks) {
+		this.barks = barks;
 	}
 
 }

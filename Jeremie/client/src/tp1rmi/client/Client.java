@@ -19,16 +19,23 @@ public class Client {
 			Registry registry = LocateRegistry.getRegistry(host);
 			CabinetVeterinaire stubCab = (CabinetVeterinaire) registry.lookup("Cabinet");
 			
-			stubCab.addAnimal("René","asiatique","taupe","Henry","Taupe en très bonne santé");
-			
-			Animal Rene = stubCab.searchAnimal("René");
-			Species taupe = new Species("Tope");
-			System.out.println(taupe.getSpeciesName());
-			Rene.printFullName();
-			String responseRene = Rene.getFullName();
+			stubCab.addAnimal("René","asiatique","taupe", 10 ,"Henry","Taupe en très bonne santé");
+			Animal rene = stubCab.searchAnimal("René");
+//			ISpecies taupe = new Species("Tope");
+//			System.out.println(taupe.getSpeciesName());
+			rene.printFullName();
+			String responseRene = rene.getFullName();
 			System.out.println("response : "+responseRene);
 			
+			Species medorSpecies = new Dog();
+			Species esp = new Species();
+			stubCab.addAnimal("Medor", "berger-allemand", esp, "Henry", "very good boy");
 			
+			
+			Animal medor = stubCab.searchAnimal("Medor");
+			medor.printFullName();
+			String responseMedor = medor.getFullName();
+			System.out.println("response : "+responseMedor);
 //			Animal stubA = (Animal) registry.lookup("Animal");
 //			String response = stubA.getFullName();
 //			System.out.println("response : "+response);
