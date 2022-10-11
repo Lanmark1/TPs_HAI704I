@@ -19,7 +19,7 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	
 	
 	public CabinetVeterinaireImpl() throws RemoteException {
-   // TODO document why this constructor is empty
+		
 	}
 	
 	@Override
@@ -41,13 +41,9 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	@Override
 	public void addAnimal(String name, String ownerName, Espece species, String race, String state) throws RemoteException  {
 		
-		
 		Animal animal = new AnimalImpl(name, ownerName, species, race, state);
-		if(!cabinet.contains(animal)) {
-
-		size++;
 		cabinet.add(animal);
-		}
+		
 	}
 
 	@Override

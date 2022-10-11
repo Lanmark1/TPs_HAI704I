@@ -1,6 +1,7 @@
 package server;
 
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -18,15 +19,14 @@ public class Server {
 		
 		try {
 			
-			System.setProperty("java.security.policy", "file:./security.policy");
-			System.setProperty("java.rmi.server.codebase", "file:/home/e20180003955/TPs_HAI704I/TP1RMIClient/codebase/");
+			System.setProperty("java.security.policy", "file:/home/reyne/Bureau/TPs_HAI704I/TP1RMIServer/src/security.policy");
+			System.setProperty("java.rmi.server.codebase", "file:/home/reyne/Bureau/TPs_HAI704I/TP1RMIClient/codebase/");
+//			System.out.println(new File("").getAbsolutePath());
 			System.setSecurityManager(new SecurityManager());
 			
 			Registry registry = LocateRegistry.createRegistry(1099);
-			SuiviAnimal suivi = new SuiviAnimalImpl("12345");
 			
 			CabinetVeterinaire cabinet = new CabinetVeterinaireImpl();
-			
 			if (registry == null)
 				System.err.println("Registry not found on port 1099");
 			else {

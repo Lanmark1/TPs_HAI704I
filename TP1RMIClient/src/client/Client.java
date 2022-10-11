@@ -12,6 +12,7 @@ import commons.Espece;
 public class Client {
 	
 	public static void main(String[] args) {
+		
 		try {
 			Registry registry = LocateRegistry.getRegistry();
 			
@@ -19,14 +20,14 @@ public class Client {
 					
 		    cabinet.addAnimal("Fox", "Yoann", "Chat", "Labrador", "Bonne santé");
 			
-			Espece espece = new Chien();
+		    Espece espece = new Chien();
 			
 			cabinet.addAnimal("Matthieu", "Yoann", espece, "Labrador", "Bonne santé");
 			
 			Animal fox = cabinet.searchAnimal("Fox");
-			Animal matthieu = cabinet.searchAnimal("Matthieu");
-			System.out.println(fox.getEspece().getNomEspece());
-			System.out.println(matthieu.getEspece().getNomEspece());
+//			Animal matthieu = cabinet.searchAnimal("Matthieu");
+			System.out.println(fox.getNomEspece());
+//			System.out.println(matthieu.getEspece().getNomEspece());
 			
 			
 			System.out.println(cabinet.size());
