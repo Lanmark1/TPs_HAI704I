@@ -14,7 +14,7 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	
 	private static final long serialVersionUID = 1L;
 	
-	private List<Animal> cabinet = new ArrayList<>();
+	private ArrayList<Animal> cabinet = new ArrayList<>();
 	private int size = 0;
 	
 	
@@ -29,7 +29,10 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	}
 	}
 	
-
+	@Override
+	public Object getCabinet() throws RemoteException{
+		return this;
+	}
 	@Override
 	public void addAnimal(String name, String ownerName, String species, String race, String state) throws RemoteException  {
 		
@@ -77,6 +80,15 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 			}
 		}
 	return null;
+	}
+
+	@Override
+	public void removeAnimal(String name, String ownerName) throws RemoteException {
+		for (Animal animal : cabinet) {
+			if(animal.getnom().equals(name) && animal.getMaitre().equals(ownerName) ) {
+				cabinet.remove(animal);
+			}
+		}
 	}
 	
 }

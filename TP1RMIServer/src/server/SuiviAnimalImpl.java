@@ -8,11 +8,9 @@ import commons.SuiviAnimal;
 
 public class SuiviAnimalImpl extends UnicastRemoteObject implements SuiviAnimal, Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	public String nomSuivi;
+	private String nomSuivi;
 
 	protected SuiviAnimalImpl() throws RemoteException {
 		super();

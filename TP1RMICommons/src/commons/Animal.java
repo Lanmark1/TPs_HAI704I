@@ -7,9 +7,11 @@ public interface Animal extends Remote{
 	
 	
 	String getnom() throws RemoteException;
-//	String getSuiviAn() throws RemoteException;
+	String getSuivi() throws RemoteException;
 	String getNomEspece() throws RemoteException;
+	String getMaitre() throws RemoteException;
 	void affichernomComplet() throws RemoteException;
+	Animal getAnimal() throws RemoteException;
 	
 	
 	

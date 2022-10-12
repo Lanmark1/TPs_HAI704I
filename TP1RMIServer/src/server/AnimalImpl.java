@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import commons.Animal;
 import commons.Espece;
 import commons.SuiviAnimal;
+import server.*;
 
 public class AnimalImpl extends UnicastRemoteObject implements Animal{
 		/**
@@ -40,18 +41,22 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 			this.suivi = sa;
 	}
 		
+		@Override
+		public Animal getAnimal() throws RemoteException {
+			return this;
+		}
 		
 
 		@Override
 		public String getnom() throws RemoteException {
 			return nom;
 		}
-//		
-//		@Override
-//		public String getSuiviAn() throws RemoteException {
-//			return suivi.getSuivi();
-//		}
-//		
+		
+		@Override
+		public String getSuivi() throws RemoteException {
+			return suivi;
+		}
+		
 
 		@Override
 		public void affichernomComplet() throws RemoteException {
@@ -62,6 +67,13 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 		public String getNomEspece() throws RemoteException {
 			return espece.getNomEspece();
 		}
+
+		@Override
+		public String getMaitre() throws RemoteException {
+			return nomMaitre;
+		}
+
+		
 
 	
 

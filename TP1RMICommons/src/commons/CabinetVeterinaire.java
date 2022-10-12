@@ -2,6 +2,8 @@ package commons;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface CabinetVeterinaire extends Remote{
 	
@@ -13,4 +15,6 @@ public interface CabinetVeterinaire extends Remote{
 	public void addAnimal(Animal animal) throws RemoteException; 
 	void addAnimal(String name, String ownerName, String espece, String race, String suivi) throws RemoteException;
 	void addAnimal(String name, String ownerName, Espece espece, String race, String suivi) throws RemoteException;
+	void removeAnimal(String name, String ownerName) throws RemoteException;
+	Object getCabinet() throws RemoteException;
 } 

@@ -19,7 +19,8 @@ public class Espece implements Serializable {
 	}
 
 	public String getNomEspece() {
-		return espece;
+		return this.espece;
 	}
+	
 }
 
