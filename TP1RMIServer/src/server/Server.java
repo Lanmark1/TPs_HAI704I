@@ -18,10 +18,10 @@ public class Server {
 		
 		
 		try {
+			String chemin = new File("").getAbsolutePath();
+			System.setProperty("java.security.policy", "file:" + chemin + "/src/server/security.policy");
+			System.setProperty("java.rmi.server.codebase", "file:" + chemin + "/../TP1RMIClient/codebase/");
 			
-			System.setProperty("java.security.policy", "file:/home/reyne/Bureau/TPs_HAI704I/TP1RMIServer/src/security.policy");
-			System.setProperty("java.rmi.server.codebase", "file:/home/reyne/Bureau/TPs_HAI704I/TP1RMIClient/codebase/");
-//			System.out.println(new File("").getAbsolutePath());
 			System.setSecurityManager(new SecurityManager());
 			
 			Registry registry = LocateRegistry.createRegistry(1099);

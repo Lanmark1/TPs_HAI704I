@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class Espece implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private String espece; 
+	protected String espece; 
 	
 	public Espece() throws RemoteException {
 		super();

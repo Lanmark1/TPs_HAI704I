@@ -63,9 +63,6 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 			return espece.getNomEspece();
 		}
 
-		@Override
-		public Espece getEspece() throws RemoteException {
-			return espece;
-		}
+	
 
 }

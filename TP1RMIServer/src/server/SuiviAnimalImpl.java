@@ -1,11 +1,12 @@
 package server;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import commons.SuiviAnimal;
 
-public class SuiviAnimalImpl extends UnicastRemoteObject implements SuiviAnimal{
+public class SuiviAnimalImpl extends UnicastRemoteObject implements SuiviAnimal, Serializable{
 	
 	/**
 	 * 

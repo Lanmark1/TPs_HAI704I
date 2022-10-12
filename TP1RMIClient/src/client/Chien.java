@@ -6,16 +6,9 @@ import commons.Espece;
 public class Chien extends Espece{
 
 	private static final long serialVersionUID = 1L;
-	private String espece = "Chien";
 	
 	public Chien() throws RemoteException {
-   // TODO document why this constructor is empty
+		this.espece = "Chien";
 	}
-	
-	@Override
-	public String getNomEspece() {
-		return espece;
-	}
-
 	
 }
