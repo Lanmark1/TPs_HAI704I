@@ -83,12 +83,21 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	}
 
 	@Override
+	public ArrayList<Animal> getVeterinaire() throws RemoteException{
+		return cabinet;
+	}
+	
+	@Override
 	public void removeAnimal(String name, String ownerName) throws RemoteException {
+		ArrayList<Animal> newcabinet = new ArrayList<>();
 		for (Animal animal : cabinet) {
-			if(animal.getnom().equals(name) && animal.getMaitre().equals(ownerName) ) {
-				cabinet.remove(animal);
-			}
+			if(!(animal.getnom().equals(name) && animal.getMaitre().equals(ownerName)) ) {
+				newcabinet.add(animal);
+			}	
 		}
+		size--;
+		cabinet = newcabinet;
+		
 	}
 	
 }

@@ -1,34 +1,30 @@
 package client;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import commons.Animal;
 import commons.CabinetVeterinaire;
-import commons.*;
-import commons.Espece;
 
 public class Interface extends JFrame implements ActionListener {
 
@@ -37,12 +33,16 @@ public class Interface extends JFrame implements ActionListener {
 	private JTextField nomMaitre;
 	private JTextField nomRace;
 	private JTextField etatSante;
+	private DefaultTableModel model;
 	private JLabel lblNomDesAnimaux;
-	private JTable table;
 	JComboBox<String> comboBox;
 	Registry registry = LocateRegistry.getRegistry();
 	CabinetVeterinaire cabinet = (CabinetVeterinaire) registry.lookup("Cabinet");
+	String header[] = new String[] {"Nom animal", "Nom maitre"};
+	int row, col;
 	String nomEspece;
+	private JTable jTable1;
+	private JTable table;
 	/**
 	 * Launch the application.
 	 * @throws RemoteException 
@@ -129,6 +129,9 @@ public class Interface extends JFrame implements ActionListener {
 		etatSante.setBounds(523, 90, 206, 42);
 		contentPane.add(etatSante);
 		
+	
+		                                  
+		
 		JToggleButton tglbtnSupprimer = new JToggleButton("Supprimez");
 		tglbtnSupprimer.addActionListener(this);
 		tglbtnSupprimer.setBounds(201, 135, 167, 25);
@@ -136,12 +139,15 @@ public class Interface extends JFrame implements ActionListener {
 		
 		
 		lblNomDesAnimaux = new JLabel("Nom des animaux présents");
-		lblNomDesAnimaux.setBounds(264, 172, 206, 31);
+		lblNomDesAnimaux.setBounds(273, 167, 206, 31);
 		contentPane.add(lblNomDesAnimaux);
 	
 		
-		String[] options = { "", "Chien", "Chat"};
-		comboBox = new JComboBox<String>(options);
+		
+		comboBox = new JComboBox<String>();
+		comboBox.addItem("");
+		comboBox.addItem("Chien");
+		comboBox.addItem("Chat");
 		comboBox.setBounds(130, 58, 144, 24);
 //		comboBox.addItemListener(this);
 		contentPane.add(comboBox);
@@ -150,11 +156,34 @@ public class Interface extends JFrame implements ActionListener {
 		tglbtnValidez_1.addActionListener(this);
 		tglbtnValidez_1.setBounds(12, 135, 167, 25);
 		contentPane.add(tglbtnValidez_1);
+		
+		
+		
+		
+		model = new DefaultTableModel(header,0);
+		table = new JTable(model);
+		
+	
+		
+	
+//		table.setModel(model);
+//		contentPane.add(table);
+		
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(36, 210, 731, 147);
+		contentPane.add(scrollPane);
+		
+//		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+		
+		
 	
 	}
 
 	// Je récupère la valeur des buttons
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand(); 
@@ -163,6 +192,10 @@ public class Interface extends JFrame implements ActionListener {
 			try {
 				String espece = (String) comboBox.getSelectedItem();
 				cabinet.addAnimal(nomAnimal.getText(), nomMaitre.getText(), espece, nomRace.getText(), etatSante.getText());
+				
+				model.addRow(new Object[] { nomAnimal.getText(), nomMaitre.getText()});
+				
+				
 				
 				JOptionPane.showMessageDialog(null, "Vous venez d'ajouter un animal");
 				if(cabinet.size() > 100) {
@@ -177,10 +210,16 @@ public class Interface extends JFrame implements ActionListener {
 		if(command.equals("Supprimez")) {
 			
 			try {
-				System.out.println(cabinet.searchAnimal("Yoann"));
-				cabinet.removeAnimal(nomAnimal.getText(),nomMaitre.getText());
-				System.out.println(cabinet.searchAnimal("Yoann"));
+				int column = 0;
+				int row = table.getSelectedRow();
+				if(row != -1) {
+				cabinet.removeAnimal(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString());
+				model.removeRow(row);
 				JOptionPane.showMessageDialog(null, "Vous venez de supprimer un animal");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Veuillez sélectionner la ligne que vous voulez supprimer");
+				}
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -189,15 +228,4 @@ public class Interface extends JFrame implements ActionListener {
 		
 		
 	}
-
-	// Je récupère le nom de l'espece
-	
-//	@Override
-//	public void itemStateChanged(ItemEvent e) {
-//		Object obj = e.getItem();
-//		String selection = (String)obj;
-//		System.out.println("Je suis " + selection);
-//	}
-	
-	
 }

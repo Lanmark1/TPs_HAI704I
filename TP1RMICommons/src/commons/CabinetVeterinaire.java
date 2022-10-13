@@ -17,4 +17,5 @@ public interface CabinetVeterinaire extends Remote{
 	void addAnimal(String name, String ownerName, Espece espece, String race, String suivi) throws RemoteException;
 	void removeAnimal(String name, String ownerName) throws RemoteException;
 	Object getCabinet() throws RemoteException;
+	ArrayList<Animal> getVeterinaire() throws RemoteException;
 } 
