@@ -173,6 +173,16 @@ public class Interface extends JFrame implements ActionListener {
 		lbltaillecabinet= new JLabel("Aucun patient dans le cabinet");
 		lbltaillecabinet.setBounds(391, 166, 255, 15);
 		contentPane.add(lbltaillecabinet);
+		if (cabinet.size() > 0) {
+			lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
+			for (int i = 0; i < cabinet.size(); i++) {
+				model.addRow(new Object[] { cabinet.getCabinet().get(i).getNom(), cabinet.getCabinet().get(i).getMaitre() });
+			}
+			if(cabinet.size() > 30) {
+				lbltaillecabinet.setForeground(Color.red);
+			}
+		}
+		
 		
 		JToggleButton tglbtnaddnpatients = new JToggleButton("Ajoutez 20 patients");
 		tglbtnaddnpatients.addActionListener(this);
