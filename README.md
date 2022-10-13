@@ -9,18 +9,22 @@
 Compiler le projet
 
 ```bash
-  make compile
+make compile
 ```
 
 Executer le serveur
 
 ```bash
-    make server
+make server
 ```
 
 Executer le client
 
 ```bash
-    make interface
+make interface
 ```
-    
+## Utilisation
+
+- Capacité maximale conseillée : 30 patients
+- Ajouter un patient en insérant tous les champs requis
+- Supprimer un patient en insérant son nom et le nom de son maître
