@@ -1,11 +1,11 @@
-package tp1rmi.server;
+package server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import tp1rmi.commons.Animal;
-import tp1rmi.commons.FollowUpFile;
-import tp1rmi.commons.Species;
+import commons.Animal;
+import commons.FollowUpFile;
+import commons.Species;
 
 
 

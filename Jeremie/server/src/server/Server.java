@@ -1,4 +1,4 @@
-package tp1rmi.server;
+package server;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -13,10 +13,12 @@ public class Server {
 		try {
 //			AnimalImpl objA = new AnimalImpl("René","asiatique","taupe","Henry","Taupe en très bonne santé");
 			CabinetVeterinaireImpl objCab = new CabinetVeterinaireImpl();
-//			SecurityManager sManager = new SecurityManager();
-//			System.setSecurityManager(sManager);
+//			System.setProperty("java.security.policy","file:../../security.policy");
 			System.setProperty("java.security.policy","file:./security.policy");
-//			System.setProperty("java.rmi.server.codebase", "file:./codebase/");
+			System.setProperty("java.rmi.server.codebase", "file:./client/");
+			
+			if (System.getSecurityManager() == null)
+                System.setSecurityManager(new SecurityManager());
 //			Properties p = System.getProperties();
 //			p.list
 			Registry registry = LocateRegistry.createRegistry(1099);

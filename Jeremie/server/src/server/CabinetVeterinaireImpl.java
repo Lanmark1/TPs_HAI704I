@@ -1,14 +1,15 @@
-package tp1rmi.server;
+package server;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import tp1rmi.commons.Animal;
-import tp1rmi.commons.CabinetVeterinaire;
-import tp1rmi.commons.FollowUpFile;
-import tp1rmi.commons.Species;
+import commons.Animal;
+import commons.CabinetVeterinaire;
+import commons.FollowUpFile;
+import commons.Species;
 
 
 public class CabinetVeterinaireImpl extends UnicastRemoteObject implements CabinetVeterinaire {

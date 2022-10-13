@@ -1,9 +1,9 @@
-package tp1rmi.client;
+package client;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-import tp1rmi.commons.Species;
+import commons.Species;
 
 public class Dog extends Species implements Serializable{
 	

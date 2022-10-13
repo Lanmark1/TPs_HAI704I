@@ -1,4 +1,4 @@
-package tp1rmi.commons;
+package commons;
 
 
 import java.io.Serializable;
