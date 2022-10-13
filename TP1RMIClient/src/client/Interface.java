@@ -220,6 +220,8 @@ public class Interface extends JFrame implements ActionListener {
 				int row = table.getSelectedRow();
 				if(row != -1) {
 				cabinet.removeAnimal(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString());
+				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
+
 				model.removeRow(row);
 				JOptionPane.showMessageDialog(null, "Vous venez de supprimer un animal");
 				
