@@ -24,7 +24,7 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	
 	@Override
 	public void addAnimal(Animal animal) throws RemoteException {
-		if(!this.animalExists(animal.getnom())) {
+		if(!this.animalExists(animal.getnom(), animal.getMaitre())) {
 		cabinet.add(animal);
 	}
 	}
@@ -37,7 +37,7 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	public void addAnimal(String name, String ownerName, String species, String race, String state) throws RemoteException  {
 		
 		Animal animal = new AnimalImpl(name, ownerName, species, race, state);
-		if(!this.animalExists(name)) {
+		if(!this.animalExists(name, ownerName)) {
 		size++;
 		cabinet.add(animal);
 		}
@@ -47,16 +47,16 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	public void addAnimal(String name, String ownerName, Espece species, String race, String state) throws RemoteException  {
 		
 		Animal animal = new AnimalImpl(name, ownerName, species, race, state);
-		if(!this.animalExists(name)) {
+		if(!this.animalExists(name, ownerName)) {
 			size++;
 			cabinet.add(animal);
 		}
 	}
 
 	@Override
-	public boolean animalExists(String nom) throws RemoteException  {
+	public boolean animalExists(String nom, String owner) throws RemoteException  {
 			for (Animal animal : cabinet) {
-				if(animal.getnom().equals(nom)) {
+				if(animal.getnom().equals(nom) && animal.getMaitre().equals(owner)) {
 					return true;
 				}
 			}

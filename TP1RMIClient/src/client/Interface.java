@@ -1,5 +1,6 @@
 package client;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,13 +36,13 @@ public class Interface extends JFrame implements ActionListener {
 	private JTextField etatSante;
 	private DefaultTableModel model;
 	private JLabel lblNomDesAnimaux;
+	private JLabel lbltaillecabinet;
 	JComboBox<String> comboBox;
 	Registry registry = LocateRegistry.getRegistry();
 	CabinetVeterinaire cabinet = (CabinetVeterinaire) registry.lookup("Cabinet");
 	String header[] = new String[] {"Nom animal", "Nom maitre"};
 	int row, col;
 	String nomEspece;
-	private JTable jTable1;
 	private JTable table;
 	/**
 	 * Launch the application.
@@ -139,7 +140,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		
 		lblNomDesAnimaux = new JLabel("Nom des animaux présents");
-		lblNomDesAnimaux.setBounds(273, 167, 206, 31);
+		lblNomDesAnimaux.setBounds(36, 172, 206, 31);
 		contentPane.add(lblNomDesAnimaux);
 	
 		
@@ -175,9 +176,13 @@ public class Interface extends JFrame implements ActionListener {
 		scrollPane.setBounds(36, 210, 731, 147);
 		contentPane.add(scrollPane);
 		
+		lbltaillecabinet= new JLabel("");
+		lbltaillecabinet.setBounds(391, 166, 255, 15);
+		contentPane.add(lbltaillecabinet);
+		
 //		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 		
-		
+			
 	
 	}
 
@@ -190,16 +195,25 @@ public class Interface extends JFrame implements ActionListener {
 		if(command.equals("Validez")) {
 			
 			try {
+				
 				String espece = (String) comboBox.getSelectedItem();
+				
+				if(nomAnimal.getText() != "" && nomMaitre.getText() != "" && espece != "" && nomRace.getText() != "" && etatSante.getText() != "" && !cabinet.animalExists(nomAnimal.getText(), nomMaitre.getText())) {
+				
 				cabinet.addAnimal(nomAnimal.getText(), nomMaitre.getText(), espece, nomRace.getText(), etatSante.getText());
 				
 				model.addRow(new Object[] { nomAnimal.getText(), nomMaitre.getText()});
 				
 				
-				
+				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
 				JOptionPane.showMessageDialog(null, "Vous venez d'ajouter un animal");
-				if(cabinet.size() > 100) {
-					JOptionPane.showMessageDialog(null, "Votre cabinet contient plus de 100 animaux");
+				if(cabinet.size() > 2) {
+					lbltaillecabinet.setForeground(Color.red);
+					JOptionPane.showMessageDialog(null, "Votre cabinet contient plus de 2 animaux");
+				}
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Vous n'avez pas saisis tous les champs ou vous avez voulu insérer un animal déjà existant");
 				}
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
@@ -216,6 +230,10 @@ public class Interface extends JFrame implements ActionListener {
 				cabinet.removeAnimal(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString());
 				model.removeRow(row);
 				JOptionPane.showMessageDialog(null, "Vous venez de supprimer un animal");
+				if(cabinet.size() <= 2) {
+					lbltaillecabinet.setForeground(Color.black);
+					JOptionPane.showMessageDialog(null, "Votre cabinet est repassé en dessous du seuil de 2 animaux");
+				}
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Veuillez sélectionner la ligne que vous voulez supprimer");

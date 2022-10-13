@@ -8,7 +8,7 @@ import java.util.List;
 public interface CabinetVeterinaire extends Remote{
 	
 	
-	public boolean animalExists(String nom) throws RemoteException;
+	public boolean animalExists(String nom, String owner) throws RemoteException;
 	public Animal searchAnimal(String nom) throws RemoteException;
 	public int size() throws RemoteException;
 	
