@@ -33,10 +33,8 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	public void addAnimal(String name, String ownerName, String species, String race, String state) throws RemoteException  {
 		
 		Animal animal = new AnimalImpl(name, ownerName, species, race, state);
-		if(!this.animalExists(name, ownerName)) {
 		size++;
 		cabinet.add(animal);
-		}
 	}
 	
 	@Override

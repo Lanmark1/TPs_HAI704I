@@ -131,7 +131,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		JToggleButton tglbtnSupprimer = new JToggleButton("Supprimez");
 		tglbtnSupprimer.addActionListener(this);
-		tglbtnSupprimer.setBounds(201, 135, 167, 25);
+		tglbtnSupprimer.setBounds(110, 135, 123, 25);
 		contentPane.add(tglbtnSupprimer);
 		
 		
@@ -151,7 +151,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		JToggleButton tglbtnValidez_1 = new JToggleButton("Validez");
 		tglbtnValidez_1.addActionListener(this);
-		tglbtnValidez_1.setBounds(12, 135, 167, 25);
+		tglbtnValidez_1.setBounds(12, 135, 86, 25);
 		contentPane.add(tglbtnValidez_1);
 		
 		
@@ -165,17 +165,23 @@ public class Interface extends JFrame implements ActionListener {
 		
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setVisible(true);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(36, 210, 731, 147);
 		contentPane.add(scrollPane);
 		
-		lbltaillecabinet= new JLabel("");
+		lbltaillecabinet= new JLabel("Aucun patient dans le cabinet");
 		lbltaillecabinet.setBounds(391, 166, 255, 15);
 		contentPane.add(lbltaillecabinet);
 		
+		JToggleButton tglbtnaddnpatients = new JToggleButton("Ajoutez 20 patients");
+		tglbtnaddnpatients.addActionListener(this);
+		tglbtnaddnpatients.setBounds(244, 135, 172, 25);
+		contentPane.add(tglbtnaddnpatients);
+		
 //		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 		
-			
+	
 	
 	}
 
@@ -199,9 +205,9 @@ public class Interface extends JFrame implements ActionListener {
 				
 				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
 				JOptionPane.showMessageDialog(null, "Vous venez d'ajouter un animal");
-				if(cabinet.size() > 2) {
+				if(cabinet.size() > 30) {
 					lbltaillecabinet.setForeground(Color.red);
-					JOptionPane.showMessageDialog(null, "Votre cabinet contient plus de 2 animaux");
+					JOptionPane.showMessageDialog(null, "Votre cabinet contient plus de 30 animaux");
 				}
 				}
 				else{
@@ -228,6 +234,24 @@ public class Interface extends JFrame implements ActionListener {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Veuillez sélectionner la ligne que vous voulez supprimer");
+				}
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(command.equals("Ajoutez 20 patients")) {
+			
+			try {
+				
+				for (int i = 0; i < 20; i++) {
+				cabinet.addAnimal("Toto", "MaitreToto", "Chien", "Labrador", "Bonne santé");
+				model.addRow(new Object[] { "Toto", "MaitreToto"});
+				}
+				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
+				if(cabinet.size() > 30) {
+					lbltaillecabinet.setForeground(Color.red);
+					JOptionPane.showMessageDialog(null, "Votre cabinet contient plus de 30 animaux");
 				}
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
