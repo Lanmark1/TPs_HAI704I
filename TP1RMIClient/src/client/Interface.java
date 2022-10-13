@@ -74,11 +74,7 @@ public class Interface extends JFrame implements ActionListener {
 	 * @throws NotBoundException 
 	 */
 	public Interface() throws RemoteException, NotBoundException {
-		
-		
-		
 	
-			
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100,100,800,400);
@@ -163,9 +159,6 @@ public class Interface extends JFrame implements ActionListener {
 		
 		model = new DefaultTableModel(header,0);
 		table = new JTable(model);
-		
-	
-		
 	
 //		table.setModel(model);
 //		contentPane.add(table);
@@ -198,8 +191,7 @@ public class Interface extends JFrame implements ActionListener {
 				
 				String espece = (String) comboBox.getSelectedItem();
 				
-				if(nomAnimal.getText() != "" && nomMaitre.getText() != "" && espece != "" && nomRace.getText() != "" && etatSante.getText() != "" && !cabinet.animalExists(nomAnimal.getText(), nomMaitre.getText())) {
-				
+				if(!nomAnimal.getText().equals("") && !nomMaitre.getText().equals("") && !espece.equals("") && !nomRace.getText().equals("") && !etatSante.getText().equals("") && !cabinet.animalExists(nomAnimal.getText(), nomMaitre.getText())) {
 				cabinet.addAnimal(nomAnimal.getText(), nomMaitre.getText(), espece, nomRace.getText(), etatSante.getText());
 				
 				model.addRow(new Object[] { nomAnimal.getText(), nomMaitre.getText()});
@@ -230,10 +222,7 @@ public class Interface extends JFrame implements ActionListener {
 				cabinet.removeAnimal(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString());
 				model.removeRow(row);
 				JOptionPane.showMessageDialog(null, "Vous venez de supprimer un animal");
-				if(cabinet.size() <= 2) {
-					lbltaillecabinet.setForeground(Color.black);
-					JOptionPane.showMessageDialog(null, "Votre cabinet est repassé en dessous du seuil de 2 animaux");
-				}
+				
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Veuillez sélectionner la ligne que vous voulez supprimer");

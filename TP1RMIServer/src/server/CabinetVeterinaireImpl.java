@@ -28,11 +28,7 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 		cabinet.add(animal);
 	}
 	}
-	
-	@Override
-	public Object getCabinet() throws RemoteException{
-		return this;
-	}
+
 	@Override
 	public void addAnimal(String name, String ownerName, String species, String race, String state) throws RemoteException  {
 		
@@ -82,10 +78,6 @@ public class CabinetVeterinaireImpl extends UnicastRemoteObject implements Cabin
 	return null;
 	}
 
-	@Override
-	public ArrayList<Animal> getVeterinaire() throws RemoteException{
-		return cabinet;
-	}
 	
 	@Override
 	public void removeAnimal(String name, String ownerName) throws RemoteException {
