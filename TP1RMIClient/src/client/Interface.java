@@ -38,6 +38,7 @@ public class Interface extends JFrame implements ActionListener {
 	private JLabel lblNomDesAnimaux;
 	private JLabel lbltaillecabinet;
 	JComboBox<String> comboBox;
+	ArrayList<Animal> cab;
 	Registry registry = LocateRegistry.getRegistry();
 	CabinetVeterinaire cabinet = (CabinetVeterinaire) registry.lookup("Cabinet");
 	String header[] = new String[] {"Nom animal", "Nom maitre"};
@@ -74,6 +75,7 @@ public class Interface extends JFrame implements ActionListener {
 	 * @throws NotBoundException 
 	 */
 	public Interface() throws RemoteException, NotBoundException {
+	
 	
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -167,7 +169,7 @@ public class Interface extends JFrame implements ActionListener {
 	        };	
 		};
 	
-		
+	
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setVisible(true);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -193,7 +195,6 @@ public class Interface extends JFrame implements ActionListener {
 		tglbtnaddnpatients.setBounds(244, 135, 172, 25);
 		contentPane.add(tglbtnaddnpatients);
 		
-//		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 		
 	
 	
@@ -241,10 +242,9 @@ public class Interface extends JFrame implements ActionListener {
 				if(row != -1) {
 				cabinet.removeAnimal(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString());
 				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
-
+				
 				model.removeRow(row);
 				JOptionPane.showMessageDialog(null, "Vous venez de supprimer un animal");
-				
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Veuillez sélectionner la ligne que vous voulez supprimer");
@@ -259,9 +259,10 @@ public class Interface extends JFrame implements ActionListener {
 			try {
 				
 				for (int i = 0; i < 20; i++) {
-				cabinet.addAnimal("Toto", "MaitreToto", "Chien", "Labrador", "Bonne santé");
-				model.addRow(new Object[] { "Toto", "MaitreToto"});
+					cabinet.addAnimal("Toto", "MaitreToto", "Chien", "Labrador", "Bonne santé");
+					model.addRow(new Object[] { "Toto", "MaitreToto"});
 				}
+				System.out.println(cabinet.size());
 				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
 				if(cabinet.size() > 30) {
 					lbltaillecabinet.setForeground(Color.red);
