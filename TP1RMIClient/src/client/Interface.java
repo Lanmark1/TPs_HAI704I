@@ -158,11 +158,15 @@ public class Interface extends JFrame implements ActionListener {
 		
 		
 		model = new DefaultTableModel(header,0);
-		table = new JTable(model);
-	
-//		table.setModel(model);
-//		contentPane.add(table);
 		
+		table = new JTable(model) {
+			private static final long serialVersionUID = 1L;
+
+	        public boolean isCellEditable(int row, int column) {                
+	                return false;               
+	        };	
+		};
+	
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setVisible(true);
