@@ -1,12 +1,12 @@
-package tp1rmi.client;
+package client;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import tp1rmi.commons.Animal;
-import tp1rmi.commons.CabinetVeterinaire;
-import tp1rmi.commons.FollowUpFile;
-import tp1rmi.commons.Species;
+import commons.Animal;
+import commons.CabinetVeterinaire;
+import commons.FollowUpFile;
+import commons.Species;
 
 public class Client {
 	

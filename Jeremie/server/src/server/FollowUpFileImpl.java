@@ -1,9 +1,9 @@
-package tp1rmi.server;
+package server;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import tp1rmi.commons.FollowUpFile;
+import commons.FollowUpFile;
 
 public class FollowUpFileImpl extends UnicastRemoteObject implements FollowUpFile{
 	String fileReport;

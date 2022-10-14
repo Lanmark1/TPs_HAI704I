@@ -48,7 +48,7 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 		
 
 		@Override
-		public String getnom() throws RemoteException {
+		public String getNom() throws RemoteException {
 			return nom;
 		}
 		
@@ -57,10 +57,14 @@ public class AnimalImpl extends UnicastRemoteObject implements Animal{
 			return suivi;
 		}
 		
-
 		@Override
-		public void affichernomComplet() throws RemoteException {
-			// TODO document why this method is empty
+		public void afficherNomComplet() throws RemoteException {
+			System.out.println(getNomComplet());
+		}
+		
+		@Override
+		public String getNomComplet() throws RemoteException {
+			return "name: "+nom+", species name: "+espece.getNomEspece()+", average lifespan: "+Integer.toString(espece.getEsperanceDeVie())+", race: "+race+", owned by: "+nomMaitre;
 		}
 
 		@Override
