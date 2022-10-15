@@ -1,7 +1,9 @@
 package client;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
@@ -62,6 +64,12 @@ public class Interface extends JFrame implements ActionListener {
 				try {
 					Interface frame = new Interface();
 					frame.setVisible(true);
+					Toolkit toolkit = Toolkit.getDefaultToolkit();  
+					Dimension screenSize = toolkit.getScreenSize();  
+					int x = (screenSize.width - frame.getWidth()) / 2;  
+					int y = (screenSize.height - frame.getHeight()) / 2; 
+					frame.setLocation(x, y); 
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -76,10 +84,10 @@ public class Interface extends JFrame implements ActionListener {
 	 */
 	public Interface() throws RemoteException, NotBoundException {
 	
-	
+		
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100,100,800,400);
+		setBounds(100,100,1200,600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,7 +97,7 @@ public class Interface extends JFrame implements ActionListener {
 		contentPane.add(lblNomAnimal);
 		
 		JLabel lblNomAnimal_1 = new JLabel("Nom maître : ");
-		lblNomAnimal_1.setBounds(391, 28, 144, 15);
+		lblNomAnimal_1.setBounds(538, 28, 144, 15);
 		contentPane.add(lblNomAnimal_1);
 		
 		JLabel lblNomAnimal_1_1 = new JLabel("Espèce : ");
@@ -97,11 +105,11 @@ public class Interface extends JFrame implements ActionListener {
 		contentPane.add(lblNomAnimal_1_1);
 		
 		JLabel lblNomAnimal_1_1_1 = new JLabel("Race : ");
-		lblNomAnimal_1_1_1.setBounds(391, 63, 144, 15);
+		lblNomAnimal_1_1_1.setBounds(538, 63, 144, 15);
 		contentPane.add(lblNomAnimal_1_1_1);
 		
 		JLabel lblNomAnimal_1_1_1_1 = new JLabel("Etat de santé : ");
-		lblNomAnimal_1_1_1_1.setBounds(391, 103, 144, 15);
+		lblNomAnimal_1_1_1_1.setBounds(538, 103, 144, 15);
 		contentPane.add(lblNomAnimal_1_1_1_1);
 		
 		nomAnimal = new JTextField();
@@ -113,19 +121,19 @@ public class Interface extends JFrame implements ActionListener {
 		nomMaitre = new JTextField();
 		nomMaitre.addActionListener(this);
 		nomMaitre.setColumns(10);
-		nomMaitre.setBounds(523, 26, 144, 19);
+		nomMaitre.setBounds(723, 26, 144, 19);
 		contentPane.add(nomMaitre);
 		
 		nomRace = new JTextField();
 		nomRace.addActionListener(this);
 		nomRace.setColumns(10);
-		nomRace.setBounds(523, 61, 144, 19);
+		nomRace.setBounds(723, 61, 144, 19);
 		contentPane.add(nomRace);
 		
 		etatSante = new JTextField();
 		etatSante.addActionListener(this);
 		etatSante.setColumns(10);
-		etatSante.setBounds(523, 90, 206, 42);
+		etatSante.setBounds(723, 90, 206, 42);
 		contentPane.add(etatSante);
 		
 	
@@ -133,12 +141,12 @@ public class Interface extends JFrame implements ActionListener {
 		
 		JToggleButton tglbtnSupprimer = new JToggleButton("Supprimez");
 		tglbtnSupprimer.addActionListener(this);
-		tglbtnSupprimer.setBounds(110, 135, 123, 25);
+		tglbtnSupprimer.setBounds(150, 182, 123, 25);
 		contentPane.add(tglbtnSupprimer);
 		
 		
 		lblNomDesAnimaux = new JLabel("Nom des animaux présents");
-		lblNomDesAnimaux.setBounds(36, 172, 206, 31);
+		lblNomDesAnimaux.setBounds(45, 293, 206, 31);
 		contentPane.add(lblNomDesAnimaux);
 	
 		
@@ -153,7 +161,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		JToggleButton tglbtnValidez_1 = new JToggleButton("Validez");
 		tglbtnValidez_1.addActionListener(this);
-		tglbtnValidez_1.setBounds(12, 135, 86, 25);
+		tglbtnValidez_1.setBounds(31, 182, 86, 25);
 		contentPane.add(tglbtnValidez_1);
 		
 		
@@ -173,11 +181,11 @@ public class Interface extends JFrame implements ActionListener {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setVisible(true);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(36, 210, 731, 147);
+		scrollPane.setBounds(185, 349, 731, 187);
 		contentPane.add(scrollPane);
 		
 		lbltaillecabinet= new JLabel("Aucun patient dans le cabinet");
-		lbltaillecabinet.setBounds(391, 166, 255, 15);
+		lbltaillecabinet.setBounds(514, 241, 255, 15);
 		contentPane.add(lbltaillecabinet);
 		if (cabinet.size() > 0) {
 			lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
@@ -190,9 +198,9 @@ public class Interface extends JFrame implements ActionListener {
 		}
 		
 		
-		JToggleButton tglbtnaddnpatients = new JToggleButton("Ajoutez 20 patients");
+		JToggleButton tglbtnaddnpatients = new JToggleButton("Ajoutez 10 patients");
 		tglbtnaddnpatients.addActionListener(this);
-		tglbtnaddnpatients.setBounds(244, 135, 172, 25);
+		tglbtnaddnpatients.setBounds(303, 182, 172, 25);
 		contentPane.add(tglbtnaddnpatients);
 		
 		
@@ -240,11 +248,19 @@ public class Interface extends JFrame implements ActionListener {
 				int column = 0;
 				int row = table.getSelectedRow();
 				if(row != -1) {
+				int sizebefore = cabinet.size(); 
 				cabinet.removeAnimal(table.getModel().getValueAt(row, 0).toString(),table.getModel().getValueAt(row, 1).toString());
 				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
 				
 				model.removeRow(row);
 				JOptionPane.showMessageDialog(null, "Vous venez de supprimer un animal");
+				if(sizebefore == 30 && cabinet.size() == 29) {
+					JOptionPane.showMessageDialog(null, "Votre cabinet est repassé sous le seuil de 30 animaux");
+				}
+				if(cabinet.size() < 30) {
+					lbltaillecabinet.setForeground(Color.black);
+				}
+				
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Veuillez sélectionner la ligne que vous voulez supprimer");
@@ -254,17 +270,16 @@ public class Interface extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		if(command.equals("Ajoutez 20 patients")) {
+		if(command.equals("Ajoutez 10 patients")) {
 			
 			try {
 				
-				for (int i = 0; i < 20; i++) {
+				for (int i = 0; i < 10; i++) {
 					cabinet.addAnimal("Toto", "MaitreToto", "Chien", "Labrador", "Bonne santé");
 					model.addRow(new Object[] { "Toto", "MaitreToto"});
 				}
-				System.out.println(cabinet.size());
 				lbltaillecabinet.setText("Nombre d'animaux : " + cabinet.size());
-				if(cabinet.size() > 30) {
+				if(cabinet.size() >= 30) {
 					lbltaillecabinet.setForeground(Color.red);
 					JOptionPane.showMessageDialog(null, "Votre cabinet contient plus de 30 animaux");
 				}
