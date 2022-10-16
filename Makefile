@@ -4,10 +4,10 @@ compile:
 	javac -d TP1RMIClient/bin/ -cp ./TP1RMICommons/bin/ TP1RMIClient/src/client/*.java
 
 server:
-	java TP1RMIServer/bin/server/Server
+	java -cp "TP1RMIServer/bin/:TP1RMICommons/bin/" server.Server
 
 client:
-	java -cp "client/bin:TP1RMICommons/bin" client.client
+	java -cp "TP1RMIClient/bin:TP1RMICommons/bin/" client.Interface
 
 clean: 
 	rm -f TP1RMIServer/bin/*.class

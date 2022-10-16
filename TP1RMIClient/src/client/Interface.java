@@ -26,6 +26,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+
 import commons.Animal;
 import commons.CabinetVeterinaire;
 

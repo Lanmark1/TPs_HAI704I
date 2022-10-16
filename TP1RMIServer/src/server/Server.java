@@ -18,9 +18,9 @@ public class Server {
 		
 		
 		try {
-			String chemin = new File("").getAbsolutePath();
-			System.setProperty("java.security.policy", "file:" + chemin + "/src/server/security.policy");
-			System.setProperty("java.rmi.server.codebase", "file:" + chemin + "/../TP1RMIClient/codebase/");
+//			String chemin = new File("").getAbsolutePath();
+			System.setProperty("java.security.policy", "file:./security.policy");
+			System.setProperty("java.rmi.server.codebase", "file:./TP1RMIClient/bin/client/");
 			
 			System.setSecurityManager(new SecurityManager());
 			
