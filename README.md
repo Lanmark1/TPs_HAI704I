@@ -10,7 +10,9 @@
 ## Installation
 
 - Récupérer une archive de notre Projet ( conseillé ) 
-- Se placer à la racine et exécuter les commandes suivantes dans un terminal :
+- Se placer à la racine et exécuter les commandes suivantes dans deux terminaux de commandes :
+
+- Premier terminal
 
 Compiler le projet
 
@@ -23,11 +25,12 @@ Executer le serveur
 ```bash
 make server
 ```
+- Deuxième terminal
 
 Executer le client
 
 ```bash
-make interface
+make client
 ```
 ## Utilisation
 
