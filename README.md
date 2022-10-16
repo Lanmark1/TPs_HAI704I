@@ -6,6 +6,9 @@
 
 ## Installation
 
+- Récupérer une archive de notre Projet ( conseillé ) 
+- Se placer à la racine et exécuter les commandes suivantes dans un terminal :
+
 Compiler le projet
 
 ```bash
