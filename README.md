@@ -1,7 +1,7 @@
 # Cabinet Vétérinaire
 
-BENTOLILA Jeremie
-REYNE Yoann
+- BENTOLILA Jeremie
+- REYNE Yoann
 
 ## Pré-requis
 
