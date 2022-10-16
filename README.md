@@ -5,7 +5,7 @@
 
 ## Pré-requis
 
-- Java installé
+- Java installé + Eclipse
 
 ## Installation
 
