@@ -1,4 +1,8 @@
 compile: 
+	mkdir -p TP1RMICommons/bin
+	mkdir -p TP1RMIClient/bin
+	mkdir -p TP1RMIServer/bin
+
 	javac -d TP1RMICommons/bin/ TP1RMICommons/src/commons/*.java
 	javac -d TP1RMIServer/bin/ -cp ./TP1RMICommons/bin/ TP1RMIServer/src/server/*.java
 	javac -d TP1RMIClient/bin/ -cp ./TP1RMICommons/bin/ TP1RMIClient/src/client/*.java
